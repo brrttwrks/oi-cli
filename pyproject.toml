@@ -1,0 +1,26 @@
+[project]
+name = "oi-cli"
+version = "0.1"
+description = "A simple CLI for searching using the OSINT Industries API"
+readme = "README.md"
+authors = [{name = "Eric Barrett"}]
+license = "Apache-2.0"
+requires-python = ">=3.8"
+classifiers = []
+dependencies = [
+    "click",
+    "requests>=2.32.3",
+    "structlog>=25.3.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/brrttwrks/oi-cli"
+Changelog = "https://github.com/brrttwrks/oi-cli/releases"
+Issues = "https://github.com/brrttwrks/oi-cli/issues"
+
+[project.scripts]
+oi-cli = "oi_cli.cli:cli"
