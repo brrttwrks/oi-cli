@@ -82,6 +82,7 @@ def cli():
 
 @cli.command(name="credits")
 def credits_command():
+    """Shows remaining credits on account"""
     credits = get_credits()
     click.echo(credits)
 
@@ -118,7 +119,7 @@ def credits_command():
 )
 @click.argument("file", type=click.File("r"), default=sys.stdin)
 def search_command(type_, name, output, process, file):
-    "A basic search"
+    "Basic search"
 
     name = clean_name(name)
     if output is None:

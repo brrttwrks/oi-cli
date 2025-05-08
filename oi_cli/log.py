@@ -15,7 +15,7 @@ logging.config.dictConfig({
                 "class": "logging.StreamHandler",
             },
             "file": {
-                "level": log_level,
+                "level": OI_CLI_LOG,
                 "class": "logging.handlers.WatchedFileHandler",
                 "filename": log_path,
             },
@@ -23,7 +23,7 @@ logging.config.dictConfig({
         "loggers": {
             "": {
                 "handlers": ["stream", "file"],
-                "level": "DEBUG",
+                "level": OI_CLI_LOG,
                 "propagate": True,
             },
         }
@@ -36,7 +36,7 @@ structlog.configure(
         structlog.processors.EventRenamer("msg"),
         structlog.processors.JSONRenderer(),
     ],
-    wrapper_class=structlog.make_filtering_bound_logger(log_level),
+    wrapper_class=structlog.make_filtering_bound_logger(OI_CLI_LOG),
     logger_factory=structlog.stdlib.LoggerFactory(),
 )
 log = structlog.get_logger(module="main")
