@@ -12,6 +12,12 @@ cd oi-cli/
 uv pip install -e .
 ```
 
+`oi-cli` expects really only one environment variable be set to use - your api key:
+
+```bash
+export OI_CLI_API_KEY=XXXXXXXXX
+```
+
 ## Usage
 
 Currently, the input argument must be a CSV file with a column name according to the type of API search you are executing. There are currently several types:
