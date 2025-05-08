@@ -11,7 +11,7 @@ logging.config.dictConfig({
         "disable_existing_loggers": False,
         "handlers": {
             "stream": {
-                "level": log_level,
+                "level": OI_CLI_LOG,
                 "class": "logging.StreamHandler",
             },
             "file": {

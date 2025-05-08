@@ -6,35 +6,32 @@ from datetime import datetime
 from .log import log
 
 def get_credits():
-    try:
-        url = "https://api.osint.industries/misc/credits"
-        headers = {
-            "api-key": OI_CLI_API_KEY,
-            "accept": "application/json",
-        }
-        response = requests.get(url, headers=headers)
-        return response.json()
-    except Exception as e:
-       log.error(e)
+    url = "https://api.osint.industries/misc/credits"
+    headers = {
+        "api-key": OI_CLI_API_KEY,
+        "accept": "application/json",
+    }
+    response = requests.get(url, headers=headers)
+    return response.json()
 
 def clean_name(name: str) -> str:
-    """Clean report name"""
     n = name.lower()
     n = n.replace(" ", "_")
     return n
 
 def search_query(search_type: str, search_value: str):
-    try:
-        url = f"https://osint.industries/api/v2/{search_type}/{search_value}"
-        headers = {
-            "api-key": OI_CLI_API_KEY,
-            "accept": "application/json",
-        }
-        params = {"timeout": 60}
-        response = requests.get(url, headers=headers, params=params)
-        return response.json()
-    except Exception as e:
-        log.error(f"Error querying {search_type}: {search_value}\n{e}")
+    url = f"https://api.osint.industries/v2/request"
+    headers = {
+        "api-key": OI_CLI_API_KEY,
+        "accept": "application/json",
+    }
+    params = {
+        "type": search_type,
+        "query": search_value,
+        "timeout": 60
+    }
+    response = requests.get(url, headers=headers, params=params)
+    return response.json()
 
 def cache_query(search_key: str, name: str):
     cache_path = OI_CLI_DIR / name
