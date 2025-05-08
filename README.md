@@ -14,6 +14,14 @@ uv pip install -e .
 
 ## Usage
 
+Currently, the input argument must be a CSV file with a column name according to the type of API search you are executing. There are currently several types:
+
+- email
+- phone
+- username
+- name
+- wallet
+
 ```
 Usage: oi-cli search [OPTIONS] [FILE]
 
