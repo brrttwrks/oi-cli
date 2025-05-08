@@ -47,8 +47,12 @@ def cache_queue_writer(cache_queue):
             log.info(f"Stopping {threading.current_thread().name}")
             break
 
-        search_key, name = cache
-        cache_query(search_key, name)
+        try:
+            search_key, name = cache
+            cache_query(search_key, name)
+        except Exception as e:
+            log.error(e)
+            continue
 
 def worker(search_queue, result_queue, cache_queue):
     log.info(f"Starting {threading.current_thread().name}")
@@ -137,6 +141,7 @@ def search_command(type_, name, output, process, file):
 
     for row in csv.DictReader(file):
         val = row.get(type_)
+        val = val.strip()
         search_key = f"{type_}|{val}"
         if val is not None or len(val.strip()) > 0:
             if search_key not in cached:
